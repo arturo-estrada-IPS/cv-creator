@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import { Card } from "../widgets/card";
-import { TabItem, Tabs } from "../widgets/tabs";
+import { Card } from "../../shared/widgets/card";
+import { TabItem, Tabs } from "../../shared/widgets/tabs";
 import { Signin } from "./signin";
 import { Signup } from "./signup";
 
