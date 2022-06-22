@@ -4,6 +4,7 @@ type Color = "primary" | "secondary" | "success" | "danger" | "warn";
 type ButtonSize = "x-small" | "small" | "medium" | "large";
 type ButtonType = "button" | "submit" | "reset";
 type Children = JSX.Element | JSX.Element[] | string;
+type ButtonFill = "filled" | "outline";
 
 export interface ButtonProps {
   color?: Color;
@@ -11,6 +12,8 @@ export interface ButtonProps {
   type?: ButtonType;
   children: Children;
   onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
+  disabled?: boolean;
+  fill?: ButtonFill;
 }
 
 export interface ButtonLinkProps {

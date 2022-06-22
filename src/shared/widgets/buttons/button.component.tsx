@@ -13,26 +13,21 @@ export function Button({
   type = "button",
   size = "medium",
   children,
+  onClick = () => {},
+  fill = "filled",
+  disabled = false,
 }: ButtonProps) {
-  const buttonClasses = `${sizeClasses[size]} ${colorFilledClases[color]} ${commonClasses}`;
+  const buttonClasses = {
+    filled: `${sizeClasses[size]} ${colorFilledClases[color]} ${commonClasses}`,
+    outline: `${sizeClasses[size]} ${colorOutlineClasses[color]} ${commonClasses}`,
+  };
 
   return (
-    <button className={buttonClasses} type={type}>
-      {children}
-    </button>
-  );
-}
-
-export function ButtonOutline({
-  color = "primary",
-  type = "button",
-  size = "medium",
-  children,
-}: ButtonProps) {
-  const buttonClasses = `${sizeClasses[size]} ${colorOutlineClasses[color]} ${commonClasses}`;
-
-  return (
-    <button className={buttonClasses} type={type}>
+    <button
+      className={`${buttonClasses[fill]} disabled:opacity-50 disabled:cursor-not-allowed`}
+      type={type}
+      disabled={disabled}
+    >
       {children}
     </button>
   );

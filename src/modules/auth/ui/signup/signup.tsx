@@ -1,6 +1,6 @@
-import { SyntheticEvent, useReducer } from "react";
-import { Button } from "../../../shared/widgets/buttons";
-import { InputText } from "../../../shared/widgets/forms";
+import { ChangeEvent, SyntheticEvent, useReducer } from "react";
+import { Button } from "../../../../shared/widgets/buttons";
+import { InputText } from "../../../../shared/widgets/forms";
 import { SignupAction, SignupActionsTypes, SignupState } from "./types";
 
 export function Signup() {
@@ -43,7 +43,7 @@ export function Signup() {
           name="name"
           placeholder="John Doe"
           value={state.name}
-          onChange={({ target }) => {
+          onChange={({ target }: ChangeEvent<HTMLInputElement>) => {
             dispatch({
               type: SignupActionsTypes.SET_NAME,
               value: target.value,
@@ -55,7 +55,7 @@ export function Signup() {
           name="email"
           placeholder="example@domain.com"
           value={state.email}
-          onChange={({ target }) => {
+          onChange={({ target }: ChangeEvent<HTMLInputElement>) => {
             dispatch({
               type: SignupActionsTypes.SET_EMAIL,
               value: target.value,
@@ -68,7 +68,7 @@ export function Signup() {
           name="password"
           placeholder="password"
           value={state.password}
-          onChange={({ target }) => {
+          onChange={({ target }: ChangeEvent<HTMLInputElement>) => {
             dispatch({
               type: SignupActionsTypes.SET_PASSWORD,
               value: target.value,
