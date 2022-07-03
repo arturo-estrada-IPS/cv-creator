@@ -1,29 +1,14 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { Login, Signin, Signup } from "./modules/auth";
-
-import { DashboardComponent } from "./modules/dashboard";
-import { ProtectedRoute } from "./shared/core";
+import { Provider } from "react-redux";
+import { ToastContainer } from "react-toastify";
+import { AppRoutes } from "./app.routes";
+import { store } from "./store";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/auth" element={<Login />}>
-          <Route index element={<Navigate to="signin" />} />
-          <Route path="signin" element={<Signin />} />
-          <Route path="signup" element={<Signup />} />
-        </Route>
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute>
-              <DashboardComponent />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="/" element={<Navigate to="/auth" />} />
-      </Routes>
-    </BrowserRouter>
+    <Provider store={store}>
+      <AppRoutes />
+      <ToastContainer />
+    </Provider>
   );
 }
 

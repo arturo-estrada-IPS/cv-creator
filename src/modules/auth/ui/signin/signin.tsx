@@ -80,7 +80,7 @@ export function Signin() {
           <Button type="submit" color="primary" disabled={!formIsValid()}>
             {state.spinnerActive ? "Signing in..." : "Sign In"}
           </Button>
-          <ButtonLink pathname="">Forgot Password?</ButtonLink>
+          <ButtonLink pathname="/auth/password">Forgot Password?</ButtonLink>
         </div>
       </form>
     </div>

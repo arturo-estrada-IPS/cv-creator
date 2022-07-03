@@ -22,15 +22,28 @@ export function Button({
     outline: `${sizeClasses[size]} ${colorOutlineClasses[color]} ${commonClasses}`,
   };
 
-  return (
-    <button
-      className={`${buttonClasses[fill]} disabled:opacity-50 disabled:cursor-not-allowed`}
-      type={type}
-      disabled={disabled}
-    >
-      {children}
-    </button>
-  );
+  if (type === "submit") {
+    return (
+      <button
+        className={`${buttonClasses[fill]} disabled:opacity-50 disabled:cursor-not-allowed`}
+        type={type}
+        disabled={disabled}
+      >
+        {children}
+      </button>
+    );
+  } else {
+    return (
+      <button
+        className={`${buttonClasses[fill]} disabled:opacity-50 disabled:cursor-not-allowed`}
+        type={type}
+        disabled={disabled}
+        onClick={onClick}
+      >
+        {children}
+      </button>
+    );
+  }
 }
 
 export function ButtonLink({
@@ -42,7 +55,7 @@ export function ButtonLink({
   const className = `inline-block align-baseline font-bold text-sm ${linkClasses[color]}`;
 
   return isExternal ? (
-    <Link to={{ pathname }} target="_blank">
+    <Link to={{ pathname }} target="_blank" className={className}>
       {children}
     </Link>
   ) : (

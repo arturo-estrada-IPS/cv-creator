@@ -54,20 +54,26 @@ export function signin(email: string, password: string) {
     });
 }
 
-function loginSuccess(response: AuthResponseModel | HttpErrorResponse) {
-  if ((response.statusCode && response.statusCode === 401) || response.code) {
-    throw response;
-  }
+export function forgotPasswordReq(email: string) {
+  const { origin } = window.location;
+  const payload = {
+    email,
+    redirectUrl: `${origin}/dashboard`,
+  };
 
-  const { accessToken, expirationTime, refreshToken } = (
-    response as AuthResponseModel
-  ).stsTokenManager;
-
-  localStorage.setItem("accessToken", accessToken);
-  localStorage.setItem("expirationTime", expirationTime);
-  localStorage.setItem("refreshToken", refreshToken);
-
-  return response;
+  return fetch(`${baseUrl}/forgot-password`, {
+    method: "POST",
+    body: JSON.stringify(payload),
+    headers,
+  })
+    .then((res) => res?.json())
+    .then((response) => {
+      if (response.error) throw new Error(response.error);
+      return response;
+    })
+    .catch((err) => {
+      throw err;
+    });
 }
 
 export function userIsAuthenticated() {
@@ -77,4 +83,22 @@ export function userIsAuthenticated() {
 
 export function signout() {
   localStorage.clear();
+}
+
+function loginSuccess(response: AuthResponseModel | HttpErrorResponse) {
+  if ((response.statusCode && response.statusCode === 401) || response.code) {
+    throw response;
+  }
+
+  const { accessToken, expirationTime, refreshToken } = (
+    response as AuthResponseModel
+  ).stsTokenManager;
+  const { uid } = response as AuthResponseModel;
+
+  localStorage.setItem("accessToken", accessToken);
+  localStorage.setItem("expirationTime", expirationTime);
+  localStorage.setItem("refreshToken", refreshToken);
+  localStorage.setItem("uid", uid);
+
+  return response;
 }

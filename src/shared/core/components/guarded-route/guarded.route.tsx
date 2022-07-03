@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-globals */
 import { Navigate } from "react-router-dom";
-import { userIsAuthenticated } from "../../../modules/auth/services";
+import { userIsAuthenticated } from "../../../../modules/auth/services";
 
 interface GuardedRouteProps {
   children: JSX.Element;

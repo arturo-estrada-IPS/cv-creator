@@ -1,5 +1,5 @@
 export interface AuthResponseModel {
-  uuid: string;
+  uid: string;
   displayName: string;
   email: string;
   emailVerified: boolean;

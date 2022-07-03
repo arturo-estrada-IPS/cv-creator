@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "~react-toastify/dist/ReactToastify.min.css";
+
 body {
   background-color: rgb(248 250 252);
 }
